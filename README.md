@@ -1,24 +1,31 @@
-# Coding Exercise
+Card Service Coding Challenge
+---
 
-Please create a RESTful microservice that implements a card shuffling algorithm, as defined below.  We’d like to see evidence of test-driven development with unit tests.  We’d prefer you use Gradle for the build, and Jetty to host, but these aren't requirements.  Use best practices of interfaces and generics for abstraction, preferably implementing a strategy pattern for deploy-time dependency injection of a shuffling algorithm.  Please document your decision making process with comments in the code, especially with regards to any scope reduction.
- 
-Requirements:
-*	Create a microservice that stores and shuffles card decks.
-*	A card may be represented as a simple string such as “5-heart”, or “K-spade”.
-*	A deck is an ordered list of 52 standard playing cards.
-*	Expose a RESTful interface that allows a user to:
-*	PUT an idempotent request for the creation of a new named deck.  New decks are created in some initial sorted order.
-*	POST a request to shuffle an existing named deck.
-*	GET a list of the current decks persisted in the service.
-*	GET a named deck in its current sorted/shuffled order.
-*	DELETE a named deck.
-*	Design your own data and API structure(s) for the deck.
-*	Persist the decks in-memory only, but stub the persistence layer such that it can be later upgraded to a durable datastore.
-*	Implement a simple shuffling algorithm that simply randomizes the deck in-place.
-*	Implement a more complex algorithm that simulates hand-shuffling, i.e. splitting the deck in half and interleaving the two halves, repeating the process multiple times.
-*	Allow switching the algorithms at deploy-time only via configuration.
- 
-Provide the source code and instructions for building/running/using the microservice.
+Here are the [requirements](docs/REQUIREMENTS.md) for this challenge.
+
+The only modification to the requirements was to allow the shuffle technique to be made on the the request, instead of at deploy-time. This would allow the user to shuffle a deck multiple times using different techniques.
+
+# Development
+
+Dependencies:
+* Node
+
+To get up and running, run `make` to install node dependencies and run the server.
+
+# Environments
+
+* Local: http://localhost:8080/cards
+* Heroku: https://card-service.herokuapp.com/decks
 
 
-We don't want you to spend more than 4-8 hours on this, so we are interested in seeing your decision making process regarding feature reduction to meet the deadline while creating a minimally viable product. Feel free to ad-lib requirements within the spirit of the exercise as you see fit, or to contact me with any questions about the project.
+# Testing
+
+Test are ran using `make test`. Test are written using Jasmine and located within the `/spec` directory
+
+# API
+
+* [PUT /decks](docs/api/decks-put.md) - Create a deck
+* [GET /decks](docs/api/decks-get.md) - List all decks
+* [GET /decks/:name](docs/api/deck-get.md) - Get the cards in a deck
+* [DELETE /decks/:name](docs/api/deck-delete.md) - Delete a deck
+* [POST /decks/:name/shuffle](docs/api/deck-shuffle-post.md) - Delete a deck

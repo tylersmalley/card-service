@@ -1,0 +1,16 @@
+{
+  "name": "card-decks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyler Smalley <tylersmalley@me.com>",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "restify": "^4.0.3"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "nodemon": "^1.8.1"
+  }
+}
